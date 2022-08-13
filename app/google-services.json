@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "507657741005",
+    "project_id": "monkeykeeping-146bd",
+    "storage_bucket": "monkeykeeping-146bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507657741005:android:87633ff4a83463f6c37f84",
+        "android_client_info": {
+          "package_name": "com.example.appmonkeykeeping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507657741005-pg1nhdi1jjejojs43ulpj816la9k2scv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkzHJ3qfdjAiDR91feBrVeA3dAIOZzmC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507657741005-pg1nhdi1jjejojs43ulpj816la9k2scv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainAmountFragment">
+
+    <fragment
+        android:id="@+id/mainAmountFragment"
+        android:name="com.example.appmonkeykeeping.MainAmountFragment"
+        android:label="fragment_main_amount"
+        tools:layout="@layout/fragment_main_amount" >
+        <action
+            android:id="@+id/action_mainAmountFragment_to_statusFragment"
+            app:destination="@id/statusFragment"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="message_finding_id"
+            app:argType="string"
+            android:defaultValue="undefined" />
+        <action
+            android:id="@+id/action_mainAmountFragment_to_dashBoardFragment"
+            app:destination="@id/dashBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statusFragment"
+        android:name="com.example.appmonkeykeeping.StatusFragment"
+        android:label="fragment_status"
+        tools:layout="@layout/fragment_status" >
+        <action
+            android:id="@+id/action_statusFragment_to_dashBoardFragment"
+            app:destination="@id/dashBoardFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_statusFragment_to_mainAmountFragment"
+            app:destination="@id/mainAmountFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashBoardFragment"
+        android:name="com.example.appmonkeykeeping.DashBoardFragment"
+        android:label="fragment_dash_board"
+        tools:layout="@layout/fragment_dash_board" >
+        <action
+            android:id="@+id/action_dashBoardFragment_to_mainAmountFragment"
+            app:destination="@id/mainAmountFragment" />
+        <action
+            android:id="@+id/action_dashBoardFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
+    </fragment>
+</navigation>
