@@ -55,8 +55,10 @@ import com.example.appmonkeykeeping.center.DatabaseSystem;
 import com.example.appmonkeykeeping.custom.CustomDialogPreview;
 import com.example.appmonkeykeeping.custom.NumberTextWatcherForThousand;
 import com.example.appmonkeykeeping.databinding.FragmentMainAmountBinding;
+import com.example.appmonkeykeeping.dialog.DialogLocationSuggest;
 import com.example.appmonkeykeeping.model.Money;
 import com.example.appmonkeykeeping.remote.DataSaveInterface;
+import com.example.appmonkeykeeping.remote.LocationInserting;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -70,12 +72,11 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class MainAmountFragment extends Fragment{
+public class MainAmountFragment extends Fragment implements LocationInserting {
     private SharedPreferences shareSavingMoney;
     private FragmentMainAmountBinding binding;
     private boolean isSaved = false;
     private boolean period;
-    private DataSaveInterface listener;
     private Uri imageUri;
     private String targetId;
     private DatabaseSystem databaseSystem;
@@ -143,7 +144,6 @@ public class MainAmountFragment extends Fragment{
                     money.setId(databaseSystem.getMaxId());
                     databaseSystem.insert(money);
                 }
-//               resetStage();
                 NavController navController = Navigation.findNavController(v);
                 NavOptions navOptions = new NavOptions.Builder().setPopUpTo(R.id.statusFragment,true).build();
                 navController.navigate(R.id.action_mainAmountFragment_to_statusFragment,null,navOptions);
@@ -190,6 +190,13 @@ public class MainAmountFragment extends Fragment{
         binding.edtMainMoney.addTextChangedListener(new NumberTextWatcherForThousand(binding.edtMainMoney));
         binding.tvCateCheck.setText((!isSaved)?"":moneyMessage.getCategory());
         binding.edtLocation.setText((!isSaved)?"":moneyMessage.getLocation());
+        binding.edtLocation.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                openDialogSuggestion();
+                return true;
+            }
+        });
         binding.edtDetail.setText((!isSaved)?"":moneyMessage.getDetail());
         binding.boxPeriod.setChecked((!isSaved)?false:moneyMessage.isUsePeriod());
         if(isSaved){
@@ -331,6 +338,12 @@ public class MainAmountFragment extends Fragment{
                 billScanner();
             }
         });
+    }
+
+    private void openDialogSuggestion() {
+        DialogLocationSuggest dialogSuggest = new DialogLocationSuggest();
+        dialogSuggest.setListener(this);
+        dialogSuggest.show(getActivity().getSupportFragmentManager(),"dialog support");
     }
 
     private void billScanner() {
@@ -513,4 +526,9 @@ public class MainAmountFragment extends Fragment{
                     }
                 }
             });
+
+    @Override
+    public void enterLocation(String locationSuggested) {
+        binding.edtLocation.setText(locationSuggested);
+    }
 }
