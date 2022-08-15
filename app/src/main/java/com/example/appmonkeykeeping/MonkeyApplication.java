@@ -11,6 +11,8 @@ public class MonkeyApplication extends Application {
         super.onCreate();
         Realm.init(this);
         RealmConfiguration configuration = new RealmConfiguration.Builder()
+                .schemaVersion(2)
+                .deleteRealmIfMigrationNeeded()
                 .allowQueriesOnUiThread(true)
                 .allowWritesOnUiThread(true)
                 .build();

@@ -12,4 +12,11 @@
     <string name="electricity">Electricity</string>
     <string name="transport">Transport</string>
     <string name="period">Is it period ?</string>
+    <string name="mode_wondering">Which mode do you wanna choose ?</string>
+    <string name="outcome">Outcome</string>
+    <string name="income">Income</string>
+    <string name="lend">Lend</string>
+    <string name="borrow">Borrow</string>
+    <string name="transfer">Transfer</string>
+    <string name="skip">Skip to Dashboard</string>
 </resources>

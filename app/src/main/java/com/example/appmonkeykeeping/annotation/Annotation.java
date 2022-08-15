@@ -11,4 +11,5 @@ public class Annotation {
     public static final int REQUEST_PERMISSION_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 103;
     public static final int WRITE_STORAGE_REQUEST_CODE = 102;
+    public static final String[]typesOfRecording = new String[]{"outcome","income","lend","borrow","transfer"};
 }

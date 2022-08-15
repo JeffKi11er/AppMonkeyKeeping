@@ -51,6 +51,7 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.appmonkeykeeping.annotation.Annotation;
 import com.example.appmonkeykeeping.center.DatabaseSystem;
 import com.example.appmonkeykeeping.custom.CustomDialogPreview;
 import com.example.appmonkeykeeping.custom.NumberTextWatcherForThousand;
@@ -131,6 +132,7 @@ public class MainAmountFragment extends Fragment implements LocationInserting {
                 }
                 period = binding.boxPeriod.isChecked();
                 Money money = new Money();
+                money.setTag(Annotation.typesOfRecording[0]);
                 money.setDate(binding.tvDate.getText().toString());
                 money.setActualCost(Long.parseLong(binding.edtMainMoney.getText().toString().replaceAll(",","").trim()));
                 money.setCategory(binding.tvCateCheck.getText().toString().trim());

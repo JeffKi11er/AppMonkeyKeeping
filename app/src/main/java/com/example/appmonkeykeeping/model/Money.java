@@ -16,6 +16,16 @@ public class Money extends RealmObject {
     private long projectCost;
     private long actualCost;
     private long diff;
+    private String tag;
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     public long getId() {
         return id;
     }

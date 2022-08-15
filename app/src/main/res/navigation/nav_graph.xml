@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainAmountFragment">
+    app:startDestination="@id/playingModeFragment">
 
     <fragment
         android:id="@+id/mainAmountFragment"
@@ -47,5 +47,17 @@
         <action
             android:id="@+id/action_dashBoardFragment_to_statusFragment"
             app:destination="@id/statusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playingModeFragment"
+        android:name="com.example.appmonkeykeeping.PlayingModeFragment"
+        android:label="fragment_playing_mode"
+        tools:layout="@layout/fragment_playing_mode" >
+        <action
+            android:id="@+id/action_playingModeFragment_to_mainAmountFragment"
+            app:destination="@id/mainAmountFragment" />
+        <action
+            android:id="@+id/action_playingModeFragment_to_dashBoardFragment"
+            app:destination="@id/dashBoardFragment" />
     </fragment>
 </navigation>
