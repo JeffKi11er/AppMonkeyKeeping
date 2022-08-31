@@ -40,13 +40,6 @@
                     android:text="@string/outcome"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="fitXY"
-                    android:layout_marginLeft="100dp"
-                    android:src="@drawable/outcome" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -73,13 +66,6 @@
                     android:text="@string/income"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="fitXY"
-                    android:layout_marginLeft="100dp"
-                    android:src="@drawable/income" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -106,13 +92,6 @@
                     android:text="@string/lend"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="fitXY"
-                    android:layout_marginLeft="100dp"
-                    android:src="@drawable/being_lent" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -139,13 +118,6 @@
                     android:text="@string/borrow"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="fitXY"
-                    android:layout_marginLeft="100dp"
-                    android:src="@drawable/lent" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -170,12 +142,6 @@
                     android:textSize="20sp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="25dp"/>
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/transfer"
-                    android:layout_marginLeft="100dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <TextView
