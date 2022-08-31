@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".insertScreen.InsertIncomeFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/back_ground3">
+
+            <ImageView
+                android:id="@+id/btn_back_insert_income"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/back_btn" />
+
+            <TextView
+                android:id="@+id/tv_date_income"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_back_insert_income"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="25dp"
+                android:text="Thursday,
+                23rd August 2020"
+                android:textColor="#2A7055"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_main_money_income"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edt_money"
+                android:hint="Prizes (Yen)"
+                android:inputType="phone"
+                android:padding="20dp"
+                android:textSize="25sp" />
+            <EditText
+                android:id="@+id/edt_location_income"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edt_main_money_income"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/border_checkout_income"
+                android:hint="Location"
+                android:minHeight="48dp"
+                android:paddingLeft="25dp"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/edt_detail_income"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edt_location_income"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border_checkout_income"
+                android:hint="Put some detail (Optional)"
+                android:minHeight="48dp"
+                android:paddingLeft="25dp"
+                android:textSize="15sp" />
+            <CheckBox
+                android:id="@+id/box_period_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edt_detail_income"
+                android:layout_marginLeft="20dp"
+                android:minHeight="48dp"
+                android:text="@string/period"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/btn_save_income"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_below="@id/box_period_income"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_check_income"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>

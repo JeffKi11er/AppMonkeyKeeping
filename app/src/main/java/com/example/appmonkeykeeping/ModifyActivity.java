@@ -1,11 +1,18 @@
 package com.example.appmonkeykeeping;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.appmonkeykeeping.databinding.ActivityModifyBinding;
+import com.example.appmonkeykeeping.insertScreen.InsertIncomeFragment;
+import com.example.appmonkeykeeping.insertScreen.InsertOutcomeFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class ModifyActivity extends AppCompatActivity {
     ActivityModifyBinding binding;
@@ -17,5 +24,29 @@ public class ModifyActivity extends AppCompatActivity {
         setContentView(view);
         init();
     }
-    private void init(){}
+    private NavigationBarView.OnItemSelectedListener navListener = new NavigationBarView.OnItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment incomeFragment = null;
+            switch (item.getItemId()){
+                case R.id.nav_list:
+                    break;
+                case R.id.nav_edit:
+                    incomeFragment = new InsertIncomeFragment();
+                    break;
+                case R.id.nav_chart:
+                    break;
+                case R.id.nav_setting:
+                    break;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.container_bottom_nav,
+                    incomeFragment).commit();
+            return  true;
+        }
+    };
+    private void init(){
+        binding.bottomNav.setOnItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_bottom_nav,
+                new InsertOutcomeFragment()).commit();
+    }
 }
