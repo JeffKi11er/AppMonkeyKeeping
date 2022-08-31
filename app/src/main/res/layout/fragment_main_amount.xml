@@ -3,96 +3,226 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainAmountFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/back_ground2">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="15dp"
-                android:id="@+id/img_back"
-                android:src="@drawable/back_btn"/>
-
+            >
             <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="180dp"
+                android:layout_marginTop="25dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/img_back"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="25dp"
-                android:text="Thursday,
-                23rd August 2020"
-                android:textColor="#513C3C"
                 android:textSize="25sp"
-                android:textStyle="bold" />
-
+                android:text="Let's believe in Monkey"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
             <EditText
-                android:id="@+id/edt_main_money"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="200dp"
-                android:layout_marginRight="25dp"
-                android:background="@drawable/edt_money"
+                android:layout_margin="15dp"
+                android:textSize="25sp"
                 android:hint="Prizes (Yen)"
+                android:id="@+id/edt_main_money"
                 android:inputType="phone"
-                android:paddingLeft="25dp"
-                android:textSize="25sp" />
-
-            <EditText
-                android:id="@+id/edt_location"
+                />
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/edt_main_money"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="150dp"
-                android:layout_marginRight="25dp"
-                android:background="@drawable/insert_border_outcome"
-                android:hint="Location"
-                android:minHeight="48dp"
-                android:paddingLeft="25dp"
-                android:textSize="15sp"/>
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/tv_date"
+                    android:textSize="25sp"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+
+                    android:text="2022/07/09"/>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/monkey"
+                            android:scaleType="fitXY"
+                            android:id="@+id/img_cate_check"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp"
+                            android:textColor="#000000"
+                            android:textStyle="italic"
+                            android:id="@+id/tv_cate_check"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
             <EditText
                 android:id="@+id/edt_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/edt_location"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
-                android:background="@drawable/insert_border_outcome"
+                android:layout_margin="10dp"
+                android:background="@color/white"
                 android:hint="Put some detail (Optional)"
                 android:minHeight="48dp"
-                android:paddingLeft="25dp"
+                android:padding="5dp"
                 android:textSize="15sp" />
+            <EditText
+                android:id="@+id/edt_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                android:hint="Location"
+                android:drawableRight="@drawable/ic_location"
+                android:minHeight="48dp"
+                android:padding="5dp"
+                android:textSize="15sp" />
+
             <CheckBox
                 android:id="@+id/box_period"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/edt_detail"
-                android:layout_marginLeft="20dp"
                 android:minHeight="48dp"
                 android:text="@string/period"
-                android:textSize="17sp" />
-            <Button
-                android:layout_below="@id/box_period"
-                android:id="@+id/btn_save"
+                android:textSize="15sp" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/btn_check_outcome"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-        </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <Button
+                    android:id="@+id/btn_cate_lunch"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:textSize="15sp"
+                    android:text="@string/lunch"
+                    android:backgroundTint="#8BC34A"/>
+                <Button
+                    android:id="@+id/btn_cate_bf"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:textSize="15sp"
+                    android:text="@string/breakfast"
+                    android:backgroundTint="#673AB7"/>
+                <Button
+                    android:id="@+id/btn_cate_roser"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:textSize="15sp"
+                    android:text="@string/roser"
+                    android:backgroundTint="#E91E63"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <Button
+                    android:id="@+id/btn_cate_grocery"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:textSize="15sp"
+                    android:text="@string/groceries"
+                    android:backgroundTint="#03A9F4"/>
+                <Button
+                    android:id="@+id/btn_cate_gas"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:textSize="15sp"
+                    android:text="@string/gas"
+                    android:backgroundTint="#FFEB3B"/>
+                <Button
+                    android:id="@+id/btn_cate_electric"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:textSize="15sp"
+                    android:text="@string/electricity"
+                    android:backgroundTint="#FF5722"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <Button
+                    android:id="@+id/btn_cate_transport"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:textSize="15sp"
+                    android:text="@string/transport"
+                    android:backgroundTint="#00BCD4"/>
+                <Button
+                    android:id="@+id/btn_cate_entertain"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:textSize="15sp"
+
+                    android:text="@string/entertain"
+                    android:backgroundTint="#F44336"/>
+                <Button
+                    android:id="@+id/btn_cate_internet"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:textSize="15sp"
+                    android:text="@string/internet"
+                    android:backgroundTint="#AA3027"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_marginBottom="100dp">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_margin="20dp"
+                    android:textSize="20sp"
+                    android:text="save"
+                    android:id="@+id/btn_save"
+                    android:backgroundTint="#ba000d"
+                    android:textColor="@color/white"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_margin="20dp"
+                    android:textSize="20sp"
+                    android:text="Skip"
+                    android:id="@+id/btn_next"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="100dp"/>
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </FrameLayout>

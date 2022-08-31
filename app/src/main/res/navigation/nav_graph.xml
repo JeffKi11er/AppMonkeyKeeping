@@ -21,9 +21,6 @@
         <action
             android:id="@+id/action_mainAmountFragment_to_dashBoardFragment"
             app:destination="@id/dashBoardFragment" />
-        <action
-            android:id="@+id/action_mainAmountFragment_to_playingModeFragment"
-            app:destination="@id/playingModeFragment" />
     </fragment>
     <fragment
         android:id="@+id/statusFragment"
