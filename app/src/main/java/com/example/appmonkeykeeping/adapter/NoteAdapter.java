@@ -39,36 +39,48 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull NoteHolder holder, int position) {
-        holder.tvType.setText(moneyNotes.get(position).getCategory());
-        holder.tvAmount.setText(String.valueOf(moneyNotes.get(position).getActualCost()));
+        holder.tvLocation.setText(moneyNotes.get(position).getLocation());
+        holder.tvAmount.setText("¥"+String.valueOf(moneyNotes.get(position).getActualCost()));
         holder.tvDateTime.setText(moneyNotes.get(position).getDate());
         switch (moneyNotes.get(position).getCategory()){
             case "Lunch":
-                holder.imgCategory.setImageResource(R.drawable.lunch_box);
-                break;
-            case "Roser fee":
-                holder.imgCategory.setImageResource(R.drawable.rose);
+                holder.imgCategory.setImageResource(R.drawable.lunch);
                 break;
             case "Internet":
-                holder.imgCategory.setImageResource(R.drawable.freelance);
+                holder.imgCategory.setImageResource(R.drawable.internet);
                 break;
             case "Gas":
                 holder.imgCategory.setImageResource(R.drawable.gas);
                 break;
             case "Groceries":
-                holder.imgCategory.setImageResource(R.drawable.grocery_cart);
+                holder.imgCategory.setImageResource(R.drawable.groceries);
                 break;
             case "Breakfast":
-                holder.imgCategory.setImageResource(R.drawable.coffee_cup);
-                break;
-            case "Entertainment":
-                holder.imgCategory.setImageResource(R.drawable.popcorn);
+                holder.imgCategory.setImageResource(R.drawable.breakfast);
                 break;
             case "Electricity":
-                holder.imgCategory.setImageResource(R.drawable.electrical_energy);
+                holder.imgCategory.setImageResource(R.drawable.electricity);
                 break;
             case "Transport":
-                holder.imgCategory.setImageResource(R.drawable.transportation);
+                holder.imgCategory.setImageResource(R.drawable.transport);
+                break;
+            case "Education":
+                holder.imgCategory.setImageResource(R.drawable.education);
+                break;
+            case "Save":
+                holder.imgCategory.setImageResource(R.drawable.saving);
+                break;
+            case "Give":
+                holder.imgCategory.setImageResource(R.drawable.give_page);
+                break;
+            case "Finance":
+                holder.imgCategory.setImageResource(R.drawable.finance);
+                break;
+            case "Play":
+                holder.imgCategory.setImageResource(R.drawable.play_page);
+                break;
+            case "Income":
+                holder.imgCategory.setImageResource(R.drawable.income_item);
                 break;
         }
     }
@@ -82,13 +94,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
         private ImageView imgCategory;
         private TextView tvDateTime;
         private TextView tvAmount;
-        private TextView tvType;
+        private TextView tvLocation;
         public NoteHolder(@NonNull View itemView) {
             super(itemView);
             imgCategory = itemView.findViewById(R.id.img_cate_item);
             tvAmount = itemView.findViewById(R.id.tv_amount_item);
             tvDateTime = itemView.findViewById(R.id.tv_date_item);
-            tvType = itemView.findViewById(R.id.tv_grocery_item);
+            tvLocation = itemView.findViewById(R.id.tv_location);
         }
     }
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_nav_graph"
+    app:startDestination="@id/insertOutcomeFragment">
+
+    <fragment
+        android:id="@+id/insertOutcomeFragment"
+        android:name="com.example.appmonkeykeeping.insertScreen.InsertOutcomeFragment"
+        android:label="fragment_insert_outcome"
+        tools:layout="@layout/fragment_insert_outcome" >
+        <action
+            android:id="@+id/action_insertOutcomeFragment_to_detailIncomeFragment"
+            app:destination="@id/detailIncomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailIncomeFragment"
+        android:name="com.example.appmonkeykeeping.insertScreen.DetailIncomeFragment"
+        android:label="fragment_detail_income"
+        tools:layout="@layout/fragment_detail_income" >
+        <action
+            android:id="@+id/action_detailIncomeFragment_to_necessityFragment"
+            app:destination="@id/necessityFragment" />
+        <argument
+            android:name="main_amount"
+            app:argType="string"
+            android:defaultValue="empty" />
+        <argument
+            android:name="datetime"
+            app:argType="string"
+            android:defaultValue="empty" />
+        <argument
+            android:name="location"
+            app:argType="string"
+            android:defaultValue="empty" />
+        <argument
+            android:name="comment"
+            android:defaultValue="empty" />
+        <argument
+            android:name="isperiod"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/necessityFragment"
+        android:name="com.example.appmonkeykeeping.insertScreen.NecessityFragment"
+        android:label="fragment_necessity"
+        tools:layout="@layout/fragment_necessity" >
+        <argument
+            android:name="dateTime"
+            app:argType="string"
+            android:defaultValue="empty" />
+        <argument
+            android:name="mainAmount"
+            app:argType="string"
+            android:defaultValue="empty" />
+        <argument
+            android:name="comment"
+            app:argType="string"
+            android:defaultValue="empty" />
+        <argument
+            android:name="isPeriod"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="locationInsert"
+            app:argType="string"
+            android:defaultValue="empty" />
+    </fragment>
+</navigation>

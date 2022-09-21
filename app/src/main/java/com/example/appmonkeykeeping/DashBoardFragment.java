@@ -7,65 +7,51 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.appmonkeykeeping.center.TableOrganization;
 import com.example.appmonkeykeeping.databinding.FragmentDashBoardBinding;
+import com.example.appmonkeykeeping.helper.ChartAnalyze;
+import com.example.appmonkeykeeping.model.Money;
+
+import java.util.ArrayList;
 
 public class DashBoardFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private FragmentDashBoardBinding binding;
-    private String mParam1;
-    private String mParam2;
     private NavController controller;
-
-    public DashBoardFragment() {
-    }
-    public static DashBoardFragment newInstance(String param1, String param2) {
-        DashBoardFragment fragment = new DashBoardFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    private TableOrganization tableOrganization;
+    private ChartAnalyze chartAnalyze;
+    private long totalCash;
+    private long totalIncome;
+    private long totalOutcome;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDashBoardBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
-        init();
+        tableOrganization = TableOrganization.getInstance();
+        chartAnalyze = ChartAnalyze.getInstance();
+        totalCash = 0;
+        tableOrganization.initializeDatabase();
+        Long[]tableFinance = tableOrganization.totalAmount();
+        totalIncome = tableFinance[0];
+        totalOutcome = tableFinance[1];
+        totalCash += totalIncome;
+        totalCash -= totalOutcome;
+        binding.tvCashTotal.setText("¥"+totalCash);
+        binding.tvLastUpdate.setText((tableOrganization.showList().size()>0)?tableOrganization.showList().get(0).getDate():"");
+        ArrayList<Long>moneyIO = new ArrayList<>();
+        moneyIO.add(totalIncome*100);
+        moneyIO.add(totalOutcome*100);
+        binding.barChartTotal.setData(chartAnalyze.setUpDataBar(moneyIO,"Income and Outcome",
+                new int[]{
+                        view.getResources().getColor(R.color.income),
+                        view.getResources().getColor(R.color.outcome)
+                }));
+        chartAnalyze.setAnimateBar(binding.barChartTotal,"Income and Outcome Chart");
         return view;
-    }
-
-    private void init() {
-        binding.btnShowRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                controller = Navigation.findNavController(v);
-                NavOptions navOptions = new NavOptions.Builder().setPopUpTo(R.id.statusFragment,true).build();
-                controller.navigate(R.id.action_dashBoardFragment_to_statusFragment,null,navOptions);
-            }
-        });
-        binding.btnCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                controller = Navigation.findNavController(v);
-                NavOptions navOptions = new NavOptions.Builder().setPopUpTo(R.id.mainAmountFragment,true).build();
-                controller.navigate(R.id.action_dashBoardFragment_to_mainAmountFragment,null,navOptions);
-            }
-        });
     }
 }

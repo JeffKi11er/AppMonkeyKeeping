@@ -18,10 +18,8 @@ import com.example.appmonkeykeeping.remote.DataSaveInterface;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity implements DataSaveInterface {
+public class MainActivity extends AppCompatActivity{
     ActivityMainBinding binding;
-    private String totalInUse;
-    private int unit;
     private boolean unableBack = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +37,5 @@ public class MainActivity extends AppCompatActivity implements DataSaveInterface
         if (unableBack) {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public void dataInSaving(String message,int unit) {
-        totalInUse = message.replace(",","");
-        totalInUse = String.valueOf(Integer.parseInt(totalInUse)*unit);
-        this.unit = unit;
-        Toast.makeText(this,totalInUse,Toast.LENGTH_LONG).show();
     }
 }

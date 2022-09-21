@@ -19,39 +19,58 @@ import java.util.List;
 
 public class TableOrganization {
     private static TableOrganization tableOrganization;
-    private List<String>dataLeak;
+    private DatabaseSystem dbSystem;
+
+    public TableOrganization() {
+        initializeDatabase();
+    }
+
     public static TableOrganization getInstance(){
         if(tableOrganization == null){
             tableOrganization = new TableOrganization();
         }
         return tableOrganization;
     }
-    private Date moneyDate(Money money){
-        Date dateOfRecord = null;
-        try {
-            dateOfRecord = new SimpleDateFormat(DATE_FORMAT).parse(money.getDate());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return dateOfRecord;
+    public void initializeDatabase() {
+        dbSystem = DatabaseSystem.getInstance();
+        dbSystem.realmInitialize();
     }
-    private void dataShowing() {
-        ArrayList<Money>data = new ArrayList<>();
-        for (String money:dataLeak) {
-            String[]dataCheck = money.split("\t");
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.YEAR,Integer.parseInt(dataCheck[0].split("/")[0]));
-            calendar.set(Calendar.MONTH,Integer.parseInt(dataCheck[0].split("/")[1])-1);
-            calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(dataCheck[0].split("/")[2]));
-            Money moneyData = new Money();
-//            moneyData.setDate(calendar.getTime());
-            data.add(moneyData);
+    public ArrayList<Money> showList(){
+        ArrayList<Money>monies = dbSystem.readListData();
+        return (monies.size()>0)?
+                newestSort(monies):
+                monies;
+    }
+    public void addMoneyNote(Money money){
+        dbSystem.insert(money);
+    }
+    public void updateMoneyNote(Money money){
+        dbSystem.update(money);
+    }
+    public void removeMoneyNote(long id){
+        dbSystem.delete(id);
+    }
+    public long maxIdDB(){
+        return  dbSystem.getMaxId();
+    }
+    public Long[] totalAmount(){
+        if(dbSystem.readListData().size()==0){
+            return new Long[]{ Long.valueOf(0), Long.valueOf(0)};
         }
-        ArrayList<Money>sortedDate = newestSort(data);
-        for (Money money:
-             sortedDate) {
-            System.out.println(money.getDate());
+        long totalOutcome = 0;
+        long totalIncome = 0;
+        for (Money money: dbSystem.readListData()) {
+            switch (money.getTag()){
+                case "income":
+                    totalIncome += money.getActualCost();
+                    break;
+                case "outcome":
+                    totalOutcome += money.getActualCost();
+                    break;
+            }
+            Log.e(getClass().getName(),money.toString());
         }
+        return new Long[]{totalIncome,totalOutcome};
     }
     public ArrayList<Money> newestSort(ArrayList<Money>monies){
         List<Money>moneySort = new ArrayList<>();
@@ -64,23 +83,6 @@ public class TableOrganization {
             monies.add(payback);
         }
         return monies;
-    }
-    private Money pointInDates(ArrayList<Money>monies,boolean isMax){
-        Money temp = monies.get(0);
-        Date datePoint = moneyDate(temp);
-        for (int i = 1; i < monies.size(); i++) {
-            if(isMax){
-                if(datePoint.before(moneyDate(monies.get(i)))){
-                    temp = monies.get(i);
-                }
-            }else {
-                if(datePoint.after(moneyDate(monies.get(i)))){
-                    temp = monies.get(i);
-                    Log.e(getClass().getName(),temp.getDate()+"is the date older");
-                }
-            }
-        }
-        return temp;
     }
     class sortItems implements Comparator<Money> {
         public int compare(Money a, Money b)
