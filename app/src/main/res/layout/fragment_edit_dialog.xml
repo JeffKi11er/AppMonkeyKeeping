@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/screen_edit">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/edt_edit_date"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:maxLines="3"
+            android:text="Web, Setp 24 2022"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_edit_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Cancel"
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="50dp">
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="70dp"
+                android:background="@drawable/location_popup"
+                android:text="Unity Cor."
+                android:paddingLeft="80dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/edt_edit_location"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edt_edit_location"
+                android:background="@drawable/border_detail_edit"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_screen_money"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:id="@+id/edt_edit_money"/>
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_screen_tag"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:id="@+id/edt_edit_tag"/>
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_screen_comment"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:id="@+id/edt_edit_comment"/>
+                </LinearLayout>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/btn_edit"
+                    android:layout_margin="15dp"
+                    android:id="@+id/btn_edit_verify"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>

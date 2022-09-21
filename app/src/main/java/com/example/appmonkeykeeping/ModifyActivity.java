@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.appmonkeykeeping.databinding.ActivityModifyBinding;
+import com.example.appmonkeykeeping.insertScreen.DetailIncomeFragment;
 import com.example.appmonkeykeeping.insertScreen.InsertIncomeFragment;
 import com.example.appmonkeykeeping.insertScreen.InsertOutcomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,26 +28,29 @@ public class ModifyActivity extends AppCompatActivity {
     private NavigationBarView.OnItemSelectedListener navListener = new NavigationBarView.OnItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment incomeFragment = null;
+            Fragment fragment = null;
             switch (item.getItemId()){
                 case R.id.nav_list:
+                    fragment = new StatusFragment();
                     break;
                 case R.id.nav_edit:
-                    incomeFragment = new InsertIncomeFragment();
+                    fragment = new PlayingModeFragment();
                     break;
                 case R.id.nav_chart:
+                    fragment = new DashBoardFragment();
                     break;
                 case R.id.nav_setting:
+                    fragment = new SettingFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.container_bottom_nav,
-                    incomeFragment).commit();
+                    fragment).commit();
             return  true;
         }
     };
     private void init(){
         binding.bottomNav.setOnItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.container_bottom_nav,
-                new InsertOutcomeFragment()).commit();
+                new StatusFragment()).commit();
     }
 }

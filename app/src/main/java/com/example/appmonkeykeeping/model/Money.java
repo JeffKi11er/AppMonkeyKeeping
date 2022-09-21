@@ -100,6 +100,6 @@ public class Money extends RealmObject {
 
     @Override
     public String toString() {
-        return  id+"\t"+date +"\t"+category+"\t"+detail+"\t"+location+"\t"+usePeriod+"\t"+projectCost+"\t"+actualCost+"\t"+diff;
+        return  id+"\t"+date +"\t"+category+"\t"+detail+"\t"+location+"\t"+usePeriod+"\t"+projectCost+"\t"+actualCost+"\t"+diff+"\t"+tag;
     }
 }

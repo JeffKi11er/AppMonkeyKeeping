@@ -8,5 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="delete">#F81908</color>
+    <color name="save">#FA8BB1</color>
+    <color name="lend">#DADDDD</color>
     <color name="edit">#4CAF50</color>
+    <color name="necessary">#F8F0E5</color>
+    <color name="finance">#1E1409</color>
+    <color name="save_money">#A3B037</color>
+    <color name="education">#F5CC8E</color>
+    <color name="play">#970067</color>
+    <color name="give">#559535</color>
+    <color name="outcome">#FFC107</color>
+    <color name="income">#4CAF50</color>
 </resources>
