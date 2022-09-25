@@ -1,13 +1,7 @@
 package com.example.appmonkeykeeping.insertScreen;
 
-import static com.example.appmonkeykeeping.annotation.Annotation.DATE_FORMAT;
-import static com.example.appmonkeykeeping.annotation.Annotation.INSERT_OUTCOME_COMMENT;
-import static com.example.appmonkeykeeping.annotation.Annotation.INSERT_OUTCOME_DATE;
-import static com.example.appmonkeykeeping.annotation.Annotation.INSERT_OUTCOME_LOCATION;
-import static com.example.appmonkeykeeping.annotation.Annotation.INSERT_OUTCOME_MAIN_MONEY;
-import static com.example.appmonkeykeeping.annotation.Annotation.INSERT_OUTCOME_PERIOD;
-import static com.example.appmonkeykeeping.annotation.Annotation.INSERT_SHOWING_FORMAT;
-import static com.example.appmonkeykeeping.annotation.Annotation.requestChoose;
+import static com.example.appmonkeykeeping.annotation.AnnotationCode.DATE_FORMAT;
+import static com.example.appmonkeykeeping.annotation.AnnotationCode.INSERT_SHOWING_FORMAT;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -29,16 +23,11 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import com.example.appmonkeykeeping.MainActivity;
 import com.example.appmonkeykeeping.ModifyActivity;
 import com.example.appmonkeykeeping.R;
-import com.example.appmonkeykeeping.StatusFragmentDirections;
-import com.example.appmonkeykeeping.annotation.Annotation;
-import com.example.appmonkeykeeping.center.DatabaseSystem;
 import com.example.appmonkeykeeping.custom.NumberTextWatcherForThousand;
 import com.example.appmonkeykeeping.databinding.FragmentInsertOutcomeBinding;
 import com.example.appmonkeykeeping.dialog.DialogLocationSuggest;
-import com.example.appmonkeykeeping.model.Money;
 import com.example.appmonkeykeeping.remote.LocationInserting;
 
 import java.text.SimpleDateFormat;

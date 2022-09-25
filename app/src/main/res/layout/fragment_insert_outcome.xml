@@ -57,14 +57,6 @@
                 android:layout_marginTop="205dp"
                 android:layout_marginRight="35dp"
                 android:src="@drawable/btn_calendar" />
-            <ImageView
-                android:id="@+id/img_location_outcome"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="425dp"
-                android:layout_marginRight="25dp"
-                android:src="@drawable/contact_icon" />
 
             <EditText
                 android:id="@+id/edt_location_outcome"
@@ -79,6 +71,14 @@
                 android:minHeight="48dp"
                 android:paddingLeft="25dp"
                 android:textSize="15sp" />
+            <ImageView
+                android:id="@+id/img_location_outcome"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="425dp"
+                android:layout_marginRight="25dp"
+                android:src="@drawable/contact_icon" />
             <EditText
                 android:id="@+id/edt_detail_outcome"
                 android:layout_width="match_parent"

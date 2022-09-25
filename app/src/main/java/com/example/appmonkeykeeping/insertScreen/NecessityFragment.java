@@ -1,5 +1,6 @@
 package com.example.appmonkeykeeping.insertScreen;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,29 +8,31 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.appmonkeykeeping.R;
-import com.example.appmonkeykeeping.center.DatabaseSystem;
+import com.example.appmonkeykeeping.ModifyActivity;
+import com.example.appmonkeykeeping.annotation.AnnotationCode;
+import com.example.appmonkeykeeping.center.TableOrganization;
 import com.example.appmonkeykeeping.databinding.FragmentNecessityBinding;
+import com.example.appmonkeykeeping.model.Money;
 
 public class NecessityFragment extends Fragment {
     private FragmentNecessityBinding binding;
-    private DatabaseSystem databaseSystem;
+    private TableOrganization tableOrganization;
     private String mainAmount;
     private String location;
     private String comment;
     private boolean isPeriod;
     private String dateTime;
+    private String category;
     private NavController navController;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        databaseSystem = DatabaseSystem.getInstance();
-        databaseSystem.realmInitialize();
+        tableOrganization = TableOrganization.getInstance();
+        tableOrganization.initializeDatabase();
     }
 
     @Override
@@ -51,6 +54,68 @@ public class NecessityFragment extends Fragment {
             mainAmount = args.getMainAmount();
             dateTime = args.getDateTime();
         }
-        Log.e(getClass().getName(),dateTime+"/"+mainAmount+"/"+location+"/"+comment+"/"+isPeriod);
+        binding.tagBreakfast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "Breakfast";
+                insertData();
+            }
+        });
+        binding.tagElectricity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "Electricity";
+                insertData();
+            }
+        });
+        binding.tagGas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "Gas";
+                insertData();
+            }
+        });
+        binding.tagGroceries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "Groceries";
+                insertData();
+            }
+        });
+        binding.tagInternet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "Internet";
+                insertData();
+            }
+        });
+        binding.tagLunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "Lunch";
+                insertData();
+            }
+        });
+        binding.tagTransport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "Transport";
+                insertData();
+            }
+        });
+        binding.tvDateNecessity.setText(dateTime);
+    }
+    private void insertData(){
+        Money money = new Money();
+        money.setId(tableOrganization.maxIdDB());
+        money.setTag(AnnotationCode.typesOfRecording[1]);
+        money.setDate(dateTime);
+        money.setActualCost(Long.parseLong(mainAmount.replaceAll(",","").trim()));
+        money.setCategory(category);
+        money.setDetail(comment.trim().equals("")?"Necessity":"(Necessity) "+comment.trim());
+        money.setLocation(location);
+        money.setUsePeriod(isPeriod);
+        tableOrganization.addMoneyNote(money);
+        startActivity(new Intent(getActivity(), ModifyActivity.class));
     }
 }

@@ -1,13 +1,11 @@
 package com.example.appmonkeykeeping;
 
-import static com.example.appmonkeykeeping.annotation.Annotation.ARRAY_MONEY_SAVING;
-import static com.example.appmonkeykeeping.annotation.Annotation.DATE_FORMAT;
-import static com.example.appmonkeykeeping.annotation.Annotation.MONKEY_TASK;
-import static com.example.appmonkeykeeping.annotation.Annotation.REQUEST_PERMISSION_CODE;
-import static com.example.appmonkeykeeping.annotation.Annotation.SHARED_TABLE;
-import static com.example.appmonkeykeeping.annotation.Annotation.TOTAL_AMOUNT_IN_USING;
-import static com.example.appmonkeykeeping.annotation.Annotation.UNIT;
-import static com.example.appmonkeykeeping.annotation.Annotation.requestChoose;
+import static com.example.appmonkeykeeping.annotation.AnnotationCode.ARRAY_MONEY_SAVING;
+import static com.example.appmonkeykeeping.annotation.AnnotationCode.DATE_FORMAT;
+import static com.example.appmonkeykeeping.annotation.AnnotationCode.MONKEY_TASK;
+import static com.example.appmonkeykeeping.annotation.AnnotationCode.REQUEST_PERMISSION_CODE;
+import static com.example.appmonkeykeeping.annotation.AnnotationCode.SHARED_TABLE;
+import static com.example.appmonkeykeeping.annotation.AnnotationCode.requestChoose;
 
 import android.Manifest;
 import android.app.Activity;
@@ -51,14 +49,12 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.appmonkeykeeping.annotation.Annotation;
+import com.example.appmonkeykeeping.annotation.AnnotationCode;
 import com.example.appmonkeykeeping.center.DatabaseSystem;
-import com.example.appmonkeykeeping.custom.CustomDialogPreview;
 import com.example.appmonkeykeeping.custom.NumberTextWatcherForThousand;
 import com.example.appmonkeykeeping.databinding.FragmentMainAmountBinding;
 import com.example.appmonkeykeeping.dialog.DialogLocationSuggest;
 import com.example.appmonkeykeeping.model.Money;
-import com.example.appmonkeykeeping.remote.DataSaveInterface;
 import com.example.appmonkeykeeping.remote.LocationInserting;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -132,7 +128,7 @@ public class MainAmountFragment extends Fragment implements LocationInserting {
                 }
                 period = binding.boxPeriod.isChecked();
                 Money money = new Money();
-                money.setTag(Annotation.typesOfRecording[0]);
+                money.setTag(AnnotationCode.typesOfRecording[0]);
                 money.setDate(binding.tvDate.getText().toString());
                 money.setActualCost(Long.parseLong(binding.edtMainMoney.getText().toString().replaceAll(",","").trim()));
                 money.setCategory(binding.tvCateCheck.getText().toString().trim());

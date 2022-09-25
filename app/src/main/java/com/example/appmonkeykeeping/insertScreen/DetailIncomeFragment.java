@@ -17,18 +17,12 @@ import android.view.ViewGroup;
 
 import com.example.appmonkeykeeping.ModifyActivity;
 import com.example.appmonkeykeeping.R;
-import com.example.appmonkeykeeping.adapter.DetailOutcomeAdapter;
-import com.example.appmonkeykeeping.annotation.Annotation;
-import com.example.appmonkeykeeping.center.DatabaseSystem;
+import com.example.appmonkeykeeping.annotation.AnnotationCode;
 import com.example.appmonkeykeeping.center.TableOrganization;
 import com.example.appmonkeykeeping.databinding.FragmentDetailIncomeBinding;
 import com.example.appmonkeykeeping.helper.ViewSwiper;
 import com.example.appmonkeykeeping.model.ModelPage;
 import com.example.appmonkeykeeping.model.Money;
-import com.example.appmonkeykeeping.remote.ItemClickListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DetailIncomeFragment extends Fragment implements ViewSwiper.PageClickNotification {
     FragmentDetailIncomeBinding binding;
@@ -115,7 +109,7 @@ public class DetailIncomeFragment extends Fragment implements ViewSwiper.PageCli
         }else {
             Money money = new Money();
             money.setId(tableOrganization.maxIdDB());
-            money.setTag(Annotation.typesOfRecording[0]);
+            money.setTag(AnnotationCode.typesOfRecording[0]);
             switch (viewSwiper.showTargetPage(position)){
                 case "FINANCIAL FREEDOM":
                     money.setCategory("Finance");

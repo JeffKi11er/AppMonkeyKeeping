@@ -1,137 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DashBoardFragment">
-    <LinearLayout
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/img_secretary"
+            android:scaleType="centerCrop"/>
+
+    <RelativeLayout
+        android:id="@+id/linear_user_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@drawable/info_user_bg">
+
+        <LinearLayout
+            android:id="@+id/linear_main_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20sp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="2dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nguyen An Thiet"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Developer, Designer"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/dashboard_cardlayout">
-            <LinearLayout
-                android:layout_width="match_parent"
+            android:layout_below="@id/linear_main_user"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/vip" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
-                    android:background="@drawable/info_layout"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="25sp"
-                        android:textColor="#D5BFAD"
-                        android:text="Nguyen An Thiet"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:paddingLeft="5dp"
-                        android:textSize="15sp"
-                        android:text="Last update :"
-                        android:textColor="#D5BFAD"/>
-                    <TextView
-                        android:id="@+id/tv_last_update"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:paddingLeft="5dp"
-                        android:textSize="25sp"
-                        android:text="2002/10/22"
-                        android:textColor="#D5BFAD"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <RelativeLayout
-                            android:layout_width="150dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/pay_most">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Necessity : 90%"
-                                android:layout_centerInParent="true"
-                                android:id="@+id/tv_pay_most"/>
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="150dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/pay_least">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Play : 90%"
-                                android:layout_centerInParent="true"
-                                android:id="@+id/tv_pay_least"/>
-                        </RelativeLayout>
-                        <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/vip"
-                            android:scaleType="center"
-                            android:layout_marginTop="10dp"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/secretary"/>
-            </LinearLayout>
+                android:layout_marginStart="20dp"
+                android:text="Last update :"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_last_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="2002/10/22"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+        <ScrollView
+            android:layout_below="@id/linear_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/cash_layout"
-                android:layout_margin="20dp">
-                <TextView
-                    android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:text="Total Cash :"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/tv_main_cash"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@color/white" />
+                    android:id="@+id/linear_from_main_info">
+                    <LinearLayout
+                        android:layout_marginTop="320dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/body_info_bg">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_horizontal"
+                            android:id="@+id/linear_chart_bar">
+                            <com.github.mikephil.charting.charts.PieChart
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:id="@+id/pie_chart_overall"
+                                android:layout_marginTop="8dp"/>
+                            <com.github.mikephil.charting.charts.PieChart
+                                android:id="@+id/pie_chart_overall_holder"
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:layout_marginTop="8dp" />
+                        </LinearLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            android:id="@+id/rcl_category_chart"
+                            android:layout_margin="20dp"/>
+                    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_cash_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_main_cash"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="10dp"
-                    android:text="¥19000"
-                    android:textColor="#F02A02"
-                    android:textSize="30sp" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="200dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/main_info_bg">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_main_cash"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="10dp"
+                                android:text="Total Cash :"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/tv_cash_total"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tv_main_cash"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="10dp"
+                                android:text="¥19000"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
             </RelativeLayout>
-            <com.github.mikephil.charting.charts.BarChart
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:id="@+id/bar_chart_total"
-                android:layout_marginTop="8dp"/>
-        </LinearLayout>
-        <com.github.mikephil.charting.charts.PieChart
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/pie_chart_overall_income"
-            android:layout_marginTop="8dp"/>
-    </LinearLayout>
-
-</FrameLayout>
+        </ScrollView>
+</RelativeLayout>
