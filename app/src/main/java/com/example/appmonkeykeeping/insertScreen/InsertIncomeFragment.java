@@ -1,17 +1,15 @@
 package com.example.appmonkeykeeping.insertScreen;
 
-import static com.example.appmonkeykeeping.annotation.Annotation.DATE_FORMAT;
-import static com.example.appmonkeykeeping.annotation.Annotation.INSERT_SHOWING_FORMAT;
+import static com.example.appmonkeykeeping.annotation.AnnotationCode.DATE_FORMAT;
+import static com.example.appmonkeykeeping.annotation.AnnotationCode.INSERT_SHOWING_FORMAT;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -21,9 +19,7 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import com.example.appmonkeykeeping.ModifyActivity;
-import com.example.appmonkeykeeping.R;
-import com.example.appmonkeykeeping.annotation.Annotation;
-import com.example.appmonkeykeeping.center.DatabaseSystem;
+import com.example.appmonkeykeeping.annotation.AnnotationCode;
 import com.example.appmonkeykeeping.center.TableOrganization;
 import com.example.appmonkeykeeping.custom.NumberTextWatcherForThousand;
 import com.example.appmonkeykeeping.databinding.FragmentInsertIncomeBinding;
@@ -118,7 +114,7 @@ public class InsertIncomeFragment extends Fragment implements LocationInserting{
                 period = binding.boxPeriodIncome.isChecked();
                 Money money = new Money();
                 money.setId(tableOrganization.maxIdDB());
-                money.setTag(Annotation.typesOfRecording[1]);
+                money.setTag(AnnotationCode.typesOfRecording[1]);
                 money.setDate(dateInsert);
                 money.setActualCost(Long.parseLong(binding.edtMainMoneyIncome.getText().toString().replaceAll(",","").trim()));
                 money.setCategory("Income");

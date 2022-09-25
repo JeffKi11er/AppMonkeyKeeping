@@ -1,20 +1,15 @@
 package com.example.appmonkeykeeping.center;
 
 
-import static com.example.appmonkeykeeping.annotation.Annotation.DATE_FORMAT;
-
 import android.util.Log;
 
+import com.example.appmonkeykeeping.R;
+import com.example.appmonkeykeeping.annotation.AnnotationCode;
 import com.example.appmonkeykeeping.model.Money;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 public class TableOrganization {
@@ -71,6 +66,90 @@ public class TableOrganization {
             Log.e(getClass().getName(),money.toString());
         }
         return new Long[]{totalIncome,totalOutcome};
+    }
+    public Long[]moneyStackHolder(){
+        long totalNecessityMaintain = 0;
+        long totalFinanceMaintain = 0;
+        long totalSavedMaintain = 0;
+        long totalEducationMaintain = 0;
+        long totalPlayMaintain = 0;
+        long totalGiveMaintain = 0;
+        long totalIncome = totalAmount()[0];
+        totalNecessityMaintain = totalIncome * 55/100;
+        totalFinanceMaintain = totalIncome * 10/100;
+        totalSavedMaintain = totalIncome * 10/100;
+        totalEducationMaintain = totalIncome * 10/100;
+        totalPlayMaintain = totalIncome * 10/100;
+        totalGiveMaintain = totalIncome * 5/100;
+        for (Money money : dbSystem.readListData()) {
+            switch (money.getCategory()){
+                case "Education":
+                    totalEducationMaintain-=money.getActualCost();
+                    break;
+                case "Save":
+                    totalSavedMaintain-=money.getActualCost();
+                    break;
+                case "Give":
+                    totalGiveMaintain-=money.getActualCost();
+                    break;
+                case "Finance":
+                    totalFinanceMaintain-=money.getActualCost();
+                    break;
+                case "Play":
+                    totalPlayMaintain-=money.getActualCost();
+                    break;
+                case "Income":
+                    break;
+                default:
+                    totalNecessityMaintain-=money.getActualCost();
+                    break;
+            }
+        }
+        return new Long[]{totalNecessityMaintain,
+                totalFinanceMaintain,
+                totalSavedMaintain,
+                totalEducationMaintain,
+                totalPlayMaintain,
+                totalGiveMaintain};
+    }
+    public Long[]categoriesIncomeAndOutcome(){
+        long totalNecessityMaintain = 0;
+        long totalFinanceMaintain = 0;
+        long totalSavedMaintain = 0;
+        long totalEducationMaintain = 0;
+        long totalPlayMaintain = 0;
+        long totalGiveMaintain = 0;
+        long totalIncome = totalAmount()[0];
+        for (Money money : dbSystem.readListData()) {
+            switch (money.getCategory()){
+                case "Education":
+                    totalEducationMaintain+=money.getActualCost();
+                    break;
+                case "Save":
+                    totalSavedMaintain+=money.getActualCost();
+                    break;
+                case "Give":
+                    totalGiveMaintain+=money.getActualCost();
+                    break;
+                case "Finance":
+                    totalFinanceMaintain+=money.getActualCost();
+                    break;
+                case "Play":
+                    totalPlayMaintain+=money.getActualCost();
+                    break;
+                case "Income":
+                    break;
+                default:
+                    totalNecessityMaintain+=money.getActualCost();
+                    break;
+            }
+        }
+        return new Long[]{totalIncome,totalNecessityMaintain,
+                totalFinanceMaintain,
+                totalSavedMaintain,
+                totalEducationMaintain,
+                totalPlayMaintain,
+                totalGiveMaintain};
     }
     public ArrayList<Money> newestSort(ArrayList<Money>monies){
         List<Money>moneySort = new ArrayList<>();

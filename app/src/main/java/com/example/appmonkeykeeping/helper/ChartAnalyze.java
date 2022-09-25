@@ -25,10 +25,10 @@ public class ChartAnalyze {
         }
         return chartAnalyze;
     }
-    public BarData setUpDataBar(ArrayList<Long>monies, String description, int[]colors){
+    public BarData setUpDataBar(ArrayList<DataBarChart>monies, String description, int[]colors){
         barEntries = new ArrayList<>();
         for (int i = 0; i < monies.size(); i++) {
-            BarEntry barEntry = new BarEntry(i,(float)monies.get(i));
+            BarEntry barEntry = new BarEntry(monies.get(i).getAmount(),monies.get(i).getData() );
             barEntries.add(barEntry);
         }
         BarDataSet barDataSet = new BarDataSet(barEntries,description);
@@ -47,10 +47,10 @@ public class ChartAnalyze {
         pieChart.getDescription().setText(description);
         pieChart.getDescription().setTextColor(Color.BLUE);
     }
-    public PieData setUpDataPie(ArrayList<Long>monies,String description, int[]colors){
+    public PieData setUpDataPie(ArrayList<DataPieChart>monies,String description, int[]colors){
         pieEntries = new ArrayList<>();
         for (int i = 0; i < monies.size(); i++) {
-            PieEntry pieEntry = new PieEntry(i,monies.get(i));
+            PieEntry pieEntry = new PieEntry(monies.get(i).getData(),monies.get(i).getLabel());
             pieEntries.add(pieEntry);
         }
         PieDataSet pieDataSet = new PieDataSet(pieEntries,description);
@@ -59,3 +59,4 @@ public class ChartAnalyze {
         return new PieData(pieDataSet);
     }
 }
+
