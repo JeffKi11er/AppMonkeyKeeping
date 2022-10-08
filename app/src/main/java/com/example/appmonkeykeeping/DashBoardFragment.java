@@ -51,7 +51,7 @@ public class DashBoardFragment extends Fragment {
                 return true; 
             }
         });
-        binding.tvLastUpdate.setText((tableOrganization.showList().size()>0)?tableOrganization.showList().get(0).getDate():"");
+//        binding.tvLastUpdate.setText((tableOrganization.showList().size()>0)?tableOrganization.showList().get(0).getDate():"");
         ArrayList<DataPieChart>moneyInAndOut = new ArrayList<>();
         ArrayList<Integer>colorInAndOut = new ArrayList<>();
         analyzeData(tableCategories,view,moneyInAndOut,colorInAndOut);

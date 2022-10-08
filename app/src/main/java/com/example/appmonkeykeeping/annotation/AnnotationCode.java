@@ -13,21 +13,8 @@ public class AnnotationCode {
     public static final int CAMERA_REQUEST_CODE = 103;
     public static final int WRITE_STORAGE_REQUEST_CODE = 102;
     public static final String[]typesOfRecording = new String[]{"outcome","income","lend","borrow","transfer"};
-    public static enum Categories{
-        Lunch,
-        Internet,
-        Gas,
-        Groceries,
-        Breakfast,
-        Electricity,
-        Transport,
-        Education,
-        Save,
-        Give,
-        Finance,
-        Play,
-        Income
-    }
+    public static final String ALARM_PERIOD = "period_channel";
+    public static final int CHANNEL_ALARM = 1;
     public static final String INSERT_OUTCOME_DATE = "INSERT_OUTCOME_DATE";
     public static final String INSERT_OUTCOME_LOCATION = "INSERT_OUTCOME_LOCATION";
     public static final String INSERT_OUTCOME_MAIN_MONEY = "INSERT_OUTCOME_MAIN_MONEY";
