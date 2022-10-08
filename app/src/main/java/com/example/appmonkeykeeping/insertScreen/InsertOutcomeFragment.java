@@ -28,6 +28,7 @@ import com.example.appmonkeykeeping.R;
 import com.example.appmonkeykeeping.custom.NumberTextWatcherForThousand;
 import com.example.appmonkeykeeping.databinding.FragmentInsertOutcomeBinding;
 import com.example.appmonkeykeeping.dialog.DialogLocationSuggest;
+import com.example.appmonkeykeeping.helper.AlarmManagerHelper;
 import com.example.appmonkeykeeping.remote.LocationInserting;
 
 import java.text.SimpleDateFormat;
@@ -38,7 +39,7 @@ public class InsertOutcomeFragment extends Fragment implements LocationInserting
     private String dateInsert;
     private boolean period;
     private SharedPreferences shareSavingMoney;
-
+    private AlarmManagerHelper alarmManagerHelper;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,7 @@ public class InsertOutcomeFragment extends Fragment implements LocationInserting
 
     private void init() {
         Calendar calendar = Calendar.getInstance();
+        alarmManagerHelper = AlarmManagerHelper.getInstance();
         SimpleDateFormat dateFormatDb = new SimpleDateFormat(DATE_FORMAT);
         SimpleDateFormat dateFormatShow = new SimpleDateFormat(INSERT_SHOWING_FORMAT);
         String dateNow = dateFormatShow.format(calendar.getTime());
@@ -113,6 +115,9 @@ public class InsertOutcomeFragment extends Fragment implements LocationInserting
                 if (binding.edtMainMoneyOutcome.getText().toString().trim().equals("")){
                     binding.edtMainMoneyOutcome.setError("Please enter the outcome cash");
                     return;
+                }
+                if(binding.boxPeriodOutcome.isChecked()){
+                    alarmManagerHelper.startAlarm(getActivity(),getContext(),calendar);
                 }
                 NavController navController = Navigation.findNavController(v);
                 NavOptions navOptions = new NavOptions.Builder().setPopUpTo(R.id.detailIncomeFragment,true).build();

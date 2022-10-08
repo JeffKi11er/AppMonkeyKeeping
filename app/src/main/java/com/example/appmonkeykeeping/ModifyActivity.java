@@ -9,10 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.appmonkeykeeping.databinding.ActivityModifyBinding;
-import com.example.appmonkeykeeping.insertScreen.DetailIncomeFragment;
-import com.example.appmonkeykeeping.insertScreen.InsertIncomeFragment;
-import com.example.appmonkeykeeping.insertScreen.InsertOutcomeFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class ModifyActivity extends AppCompatActivity {

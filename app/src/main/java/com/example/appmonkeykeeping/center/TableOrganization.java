@@ -59,11 +59,10 @@ public class TableOrganization {
                 case "income":
                     totalIncome += money.getActualCost();
                     break;
-                case "outcome":
+                default:
                     totalOutcome += money.getActualCost();
                     break;
             }
-            Log.e(getClass().getName(),money.toString());
         }
         return new Long[]{totalIncome,totalOutcome};
     }
@@ -111,6 +110,43 @@ public class TableOrganization {
                 totalEducationMaintain,
                 totalPlayMaintain,
                 totalGiveMaintain};
+    }
+    public int []moneyProjectCategorizes() {
+        double totalNecessity = 0;
+        double totalFinance = 0;
+        double totalSaved = 0;
+        double totalEducation = 0;
+        double totalPlay = 0;
+        double totalGive = 0;
+        double totalIncome = totalAmount()[0].doubleValue();
+        totalNecessity = totalIncome * 55 / 100;
+        totalFinance = totalIncome * 10 / 100;
+        totalSaved = totalIncome * 10 / 100;
+        totalEducation = totalIncome * 10 / 100;
+        totalPlay = totalIncome * 10 / 100;
+        totalGive = totalIncome * 5 / 100;
+        double totalNecessityMaintain = moneyStackHolder()[0].doubleValue();
+        double totalFinanceMaintain = moneyStackHolder()[1].doubleValue();
+        double totalSavedMaintain = moneyStackHolder()[2].doubleValue();
+        double totalEducationMaintain = moneyStackHolder()[3].doubleValue();
+        double totalPlayMaintain = moneyStackHolder()[4].doubleValue();
+        double totalGiveMaintain = moneyStackHolder()[5].doubleValue();
+        int necessityProg = Math.round((float) ((totalNecessity-totalNecessityMaintain) / totalNecessity) * 100);
+        int financeProg = Math.round((float) ((totalFinance-totalFinanceMaintain) / totalFinance) * 100);
+        int savedProg = Math.round((float) ((totalSaved-totalSavedMaintain) / totalSaved) * 100);
+        int educationProg = Math.round((float) ((totalEducation-totalEducationMaintain) / totalEducation) * 100);
+        int playProg = Math.round((float) ((totalPlay-totalPlayMaintain) / totalPlay) * 100);
+        int giveProg = Math.round((float) ((totalGive-totalGiveMaintain) / totalGive) * 100);
+        Log.e(getClass().getName(),totalNecessityMaintain / totalNecessity+"-"+totalFinanceMaintain / totalFinance+"-"+totalSavedMaintain / totalSaved+"-"+
+                totalEducationMaintain / totalEducation+"-"+totalPlayMaintain / totalPlay+"-"+totalGiveMaintain / totalGive);
+        return new int[]{
+                necessityProg,
+                financeProg,
+                savedProg,
+                educationProg,
+                playProg,
+                giveProg
+        };
     }
     public Long[]categoriesIncomeAndOutcome(){
         long totalNecessityMaintain = 0;

@@ -11,15 +11,19 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.appmonkeykeeping.MainActivity;
 import com.example.appmonkeykeeping.ModifyActivity;
 import com.example.appmonkeykeeping.R;
 import com.example.appmonkeykeeping.annotation.AnnotationCode;
 import com.example.appmonkeykeeping.center.TableOrganization;
 import com.example.appmonkeykeeping.databinding.FragmentDetailIncomeBinding;
+import com.example.appmonkeykeeping.helper.AlarmManagerHelper;
+import com.example.appmonkeykeeping.helper.NotificationHelper;
 import com.example.appmonkeykeeping.helper.ViewSwiper;
 import com.example.appmonkeykeeping.model.ModelPage;
 import com.example.appmonkeykeeping.model.Money;
@@ -34,11 +38,13 @@ public class DetailIncomeFragment extends Fragment implements ViewSwiper.PageCli
     private String dateTime;
     private NavController navController;
     private ViewSwiper viewSwiper;
+    private NotificationHelper notificationHelper;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tableOrganization = TableOrganization.getInstance();
         tableOrganization.initializeDatabase();
+        notificationHelper = NotificationHelper.getInstance();
     }
 
     @Override
@@ -63,12 +69,15 @@ public class DetailIncomeFragment extends Fragment implements ViewSwiper.PageCli
         navController = Navigation.findNavController(view);
         viewSwiper = new ViewSwiper();
         viewSwiper.setListener(this);
-        viewSwiper.addListPage(new ModelPage(R.drawable.necessity,"NECESSITIES","Which is very necessary for you ?",70));
-        viewSwiper.addListPage(new ModelPage(R.drawable.finance_team,"FINANCIAL FREEDOM","Free in investiagtion",25));
-        viewSwiper.addListPage(new ModelPage(R.drawable.save,"LONG TERM SAVING","Time is your money",35));
-        viewSwiper.addListPage(new ModelPage(R.drawable.study,"EDUCATION","Billionare also need to study",40));
-        viewSwiper.addListPage(new ModelPage(R.drawable.play,"PLAY","I got the money, let's spend it off",18));
-        viewSwiper.addListPage(new ModelPage(R.drawable.give,"GIVE","Now that's the way your heart working ! You are not a robot",10));
+        for (int i = 0; i < tableOrganization.moneyProjectCategorizes().length; i++) {
+            Log.e(getClass().getName(),String.valueOf(tableOrganization.moneyProjectCategorizes()[i]));
+        }
+        viewSwiper.addListPage(new ModelPage(R.drawable.necessity,"NECESSITIES","Which is very necessary for you ?",tableOrganization.moneyProjectCategorizes()[0]));
+        viewSwiper.addListPage(new ModelPage(R.drawable.finance_team,"FINANCIAL FREEDOM","Free in investiagtion",tableOrganization.moneyProjectCategorizes()[1]));
+        viewSwiper.addListPage(new ModelPage(R.drawable.save,"LONG TERM SAVING","Time is your money",tableOrganization.moneyProjectCategorizes()[2]));
+        viewSwiper.addListPage(new ModelPage(R.drawable.study,"EDUCATION","Billionare also need to study",tableOrganization.moneyProjectCategorizes()[3]));
+        viewSwiper.addListPage(new ModelPage(R.drawable.play,"PLAY","I got the money, let's spend it off",tableOrganization.moneyProjectCategorizes()[4]));
+        viewSwiper.addListPage(new ModelPage(R.drawable.give,"GIVE","Now that's the way your heart working ! You are not a robot",tableOrganization.moneyProjectCategorizes()[5]));
         binding.viewpageOutcome.setAdapter(viewSwiper.initializeAdapter(getContext()));
         binding.viewpageOutcome.setPadding(130,0,130,0);
         binding.viewpageOutcome.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -92,6 +101,12 @@ public class DetailIncomeFragment extends Fragment implements ViewSwiper.PageCli
             @Override
             public void onPageScrollStateChanged(int state) {
 
+            }
+        });
+        binding.imgDetailBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ModifyActivity.class));
             }
         });
     }
@@ -133,6 +148,7 @@ public class DetailIncomeFragment extends Fragment implements ViewSwiper.PageCli
             money.setDate(dateTime);
             money.setDetail(comment);
             tableOrganization.addMoneyNote(money);
+//            notificationHelper.sendOnChannel(getContext(),"Successfully saved !",AnnotationCode.CHANNEL_ALARM);
             startActivity(new Intent(getActivity(), ModifyActivity.class));
         }
     }

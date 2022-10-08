@@ -44,7 +44,14 @@ public class DashBoardFragment extends Fragment {
         totalCash += tableOverall[0];
         totalCash -= tableOverall[1];
         binding.tvCashTotal.setText("¥"+encodeMoney(totalCash));
-        binding.tvLastUpdate.setText((tableOrganization.showList().size()>0)?tableOrganization.showList().get(0).getDate():"");
+        binding.tvCashTotal.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                binding.tvCashTotal.setText("¥"+totalCash);
+                return true; 
+            }
+        });
+//        binding.tvLastUpdate.setText((tableOrganization.showList().size()>0)?tableOrganization.showList().get(0).getDate():"");
         ArrayList<DataPieChart>moneyInAndOut = new ArrayList<>();
         ArrayList<Integer>colorInAndOut = new ArrayList<>();
         analyzeData(tableCategories,view,moneyInAndOut,colorInAndOut);
@@ -57,7 +64,7 @@ public class DashBoardFragment extends Fragment {
         chartAnalyze.setAnimatePie(binding.pieChartOverallHolder,"Money in holder for each categories");
         ArrayList<ChartItemCategorize>chartItemCategorizes = new ArrayList<>();
         analyzeCategorizeChart(tableCategories,tableStackHolder,chartItemCategorizes,view);
-        ItemChartAdapter adapter = new ItemChartAdapter(getContext(),chartItemCategorizes);
+         ItemChartAdapter adapter = new ItemChartAdapter(getContext(),chartItemCategorizes);
         binding.rclCategoryChart.setAdapter(adapter);
         return view;
     }
