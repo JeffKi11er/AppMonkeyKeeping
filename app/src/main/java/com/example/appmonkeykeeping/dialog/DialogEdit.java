@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.appmonkeykeeping.R;
+import com.example.appmonkeykeeping.annotation.AnnotationCode;
 import com.example.appmonkeykeeping.center.TableOrganization;
 import com.example.appmonkeykeeping.model.Money;
 import com.example.appmonkeykeeping.remote.GotInfoEditProgress;
@@ -57,13 +58,13 @@ public class DialogEdit extends AppCompatDialogFragment{
                 if (listener!=null){
                     Money moneyEdited = new Money();
                     moneyEdited.setId(money.getId());
-                    moneyEdited.setTag(money.getTag());
                     moneyEdited.setDiff(money.getDiff());
                     moneyEdited.setProjectCost(money.getProjectCost());
                     moneyEdited.setDate(edtDate.getText().toString().trim());
                     moneyEdited.setLocation(edtLocation.getText().toString());
                     moneyEdited.setActualCost(Long.parseLong(edtMoney.getText().toString().trim()));
                     moneyEdited.setCategory(edtTag.getText().toString().trim());
+                    moneyEdited.setTag((edtTag.getText().toString().trim().equals("Income")? AnnotationCode.typesOfRecording[1]:AnnotationCode.typesOfRecording[0]));
                     moneyEdited.setDetail(edtComment.getText().toString().trim());
                     tableOrganization.updateMoneyNote(moneyEdited);
                     listener.updateFinish();

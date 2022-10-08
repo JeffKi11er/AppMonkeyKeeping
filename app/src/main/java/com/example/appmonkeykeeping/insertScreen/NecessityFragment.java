@@ -108,7 +108,7 @@ public class NecessityFragment extends Fragment {
     private void insertData(){
         Money money = new Money();
         money.setId(tableOrganization.maxIdDB());
-        money.setTag(AnnotationCode.typesOfRecording[1]);
+        money.setTag(AnnotationCode.typesOfRecording[0]);
         money.setDate(dateTime);
         money.setActualCost(Long.parseLong(mainAmount.replaceAll(",","").trim()));
         money.setCategory(category);

@@ -29,7 +29,6 @@ public class StatusFragment extends Fragment implements GotInfoEditProgress {
     private FragmentStatusBinding binding;
     private NoteAdapter noteAdapter;
     private ArrayList<Money>monkeyMoney;
-//    private NavController navController;
     private TableOrganization tableOrganization;
     public StatusFragment() {
     }

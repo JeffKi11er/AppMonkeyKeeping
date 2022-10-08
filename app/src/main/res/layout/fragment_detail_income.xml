@@ -17,5 +17,11 @@
             android:overScrollMode="never"
             android:clipToPadding="false"
             />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/back_btn"
+            android:id="@+id/img_detail_back"/>
     </RelativeLayout>
 </FrameLayout>
