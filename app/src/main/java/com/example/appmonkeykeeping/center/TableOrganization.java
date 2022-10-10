@@ -3,8 +3,6 @@ package com.example.appmonkeykeeping.center;
 
 import android.util.Log;
 
-import com.example.appmonkeykeeping.R;
-import com.example.appmonkeykeeping.annotation.AnnotationCode;
 import com.example.appmonkeykeeping.model.Money;
 
 import java.util.ArrayList;
@@ -31,30 +29,30 @@ public class TableOrganization {
         dbSystem.realmInitialize();
     }
     public ArrayList<Money> showList(){
-        ArrayList<Money>monies = dbSystem.readListData();
+        ArrayList<Money>monies = dbSystem.readListNoteMoneyData();
         return (monies.size()>0)?
                 newestSort(monies):
                 monies;
     }
     public void addMoneyNote(Money money){
-        dbSystem.insert(money);
+        dbSystem.insertMoney(money);
     }
     public void updateMoneyNote(Money money){
-        dbSystem.update(money);
+        dbSystem.updateNoteMoney(money);
     }
     public void removeMoneyNote(long id){
-        dbSystem.delete(id);
+        dbSystem.deleteNoteMoney(id);
     }
     public long maxIdDB(){
-        return  dbSystem.getMaxId();
+        return  dbSystem.getCategoryMaxId();
     }
     public Long[] totalAmount(){
-        if(dbSystem.readListData().size()==0){
+        if(dbSystem.readListNoteMoneyData().size()==0){
             return new Long[]{ Long.valueOf(0), Long.valueOf(0)};
         }
         long totalOutcome = 0;
         long totalIncome = 0;
-        for (Money money: dbSystem.readListData()) {
+        for (Money money: dbSystem.readListNoteMoneyData()) {
             switch (money.getTag()){
                 case "income":
                     totalIncome += money.getActualCost();
@@ -80,7 +78,7 @@ public class TableOrganization {
         totalEducationMaintain = totalIncome * 10/100;
         totalPlayMaintain = totalIncome * 10/100;
         totalGiveMaintain = totalIncome * 5/100;
-        for (Money money : dbSystem.readListData()) {
+        for (Money money : dbSystem.readListNoteMoneyData()) {
             switch (money.getCategory()){
                 case "Education":
                     totalEducationMaintain-=money.getActualCost();
@@ -156,7 +154,7 @@ public class TableOrganization {
         long totalPlayMaintain = 0;
         long totalGiveMaintain = 0;
         long totalIncome = totalAmount()[0];
-        for (Money money : dbSystem.readListData()) {
+        for (Money money : dbSystem.readListNoteMoneyData()) {
             switch (money.getCategory()){
                 case "Education":
                     totalEducationMaintain+=money.getActualCost();
