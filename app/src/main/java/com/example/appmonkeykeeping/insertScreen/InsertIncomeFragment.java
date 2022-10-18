@@ -116,7 +116,8 @@ public class InsertIncomeFragment extends Fragment implements LocationInserting{
                 money.setId(tableOrganization.maxIdDB());
                 money.setTag(AnnotationCode.typesOfRecording[1]);
                 money.setDate(dateInsert);
-                money.setActualCost(Long.parseLong(binding.edtMainMoneyIncome.getText().toString().replaceAll(",","").trim()));
+                long cost = Long.parseLong(binding.edtMainMoneyIncome.getText().toString().replaceAll(",","").trim());
+                money.setActualCost(cost);
                 money.setCategory("Income");
                 money.setDetail(binding.edtDetailIncome.getText().toString().trim().equals("")?"empty":binding.edtDetailIncome.getText().toString().trim());
                 money.setLocation(binding.edtLocationIncome.getText().toString().trim());
