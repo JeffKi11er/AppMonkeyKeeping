@@ -137,10 +137,10 @@ public class MainAmountFragment extends Fragment implements LocationInserting {
                 money.setUsePeriod(period);
                 if(isSaved){
                     money.setId(Long.parseLong(targetId));
-                    databaseSystem.updateNoteMoney(money);
+                    databaseSystem.update(money);
                 }else{
-                    money.setId(databaseSystem.getCategoryMaxId());
-                    databaseSystem.insertMoney(money);
+                    money.setId(databaseSystem.getMaxId());
+                    databaseSystem.insert(money);
                 }
                 NavController navController = Navigation.findNavController(v);
                 NavOptions navOptions = new NavOptions.Builder().setPopUpTo(R.id.statusFragment,true).build();
@@ -164,7 +164,7 @@ public class MainAmountFragment extends Fragment implements LocationInserting {
         period = false;
         Money moneyMessage = new Money();
         if(isSaved){
-            Money data = databaseSystem.findNoteMoneyWithId(Long.parseLong(targetId));
+            Money data = databaseSystem.findItemWithId(Long.parseLong(targetId));
             moneyMessage.setId(data.getId());
             moneyMessage.setLocation(data.getLocation());
             moneyMessage.setDetail(data.getDetail());

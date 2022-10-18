@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,45 +47,16 @@ public class StatusFragment extends Fragment implements GotInfoEditProgress {
         init();
         return view;
     }
-    private int showListLength(ArrayList<Money>monies){
-        if(monies.size()>=10){
-            return 10;
-        }
-        return monies.size();
-    }
-    private void updateList(){
-        ArrayList<Money>moneyShowList = tableOrganization.showList();
-        for (int i = 0; i < showListLength(moneyShowList); i++) {
-            monkeyMoney.add(moneyShowList.get(i));
-        }
-    }
+
     private void init() {
-        monkeyMoney = new ArrayList<>();
-        updateList();
+        monkeyMoney = tableOrganization.showList();
         noteAdapter = new NoteAdapter(getContext(),monkeyMoney);
         binding.rclNote.setAdapter(noteAdapter);
         ItemTouchHelper helper = new ItemTouchHelper(simpleCallback);
         helper.attachToRecyclerView(binding.rclNote);
-        binding.refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                int sizeNow = monkeyMoney.size();
-                int sizeVirtual = tableOrganization.showList().size();
-                if(sizeNow==sizeVirtual){
-                    binding.refreshLayout.setRefreshing(false);
-                    return;
-                }
-                int numberAdd = Math.min((sizeVirtual - sizeNow), 10);
-                for (int i = sizeNow; i < sizeNow+numberAdd; i++) {
-                    monkeyMoney.add(tableOrganization.showList().get(i));
-                }
-                noteAdapter.updateList(monkeyMoney);
-                binding.refreshLayout.setRefreshing(false);
-            }
-        });
     }
     private void dataChanged(){
-        updateList();
+        monkeyMoney = tableOrganization.showList();
         noteAdapter.updateList(monkeyMoney);
     }
     Money deletedItem = null;

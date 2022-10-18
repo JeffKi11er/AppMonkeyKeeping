@@ -37,7 +37,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     def nav_version = "2.5.0"
 
     // Java language implementation
@@ -68,7 +67,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
 repositories {
     mavenCentral()

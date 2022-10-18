@@ -49,7 +49,7 @@ public class DialogLocationSuggest extends AppCompatDialogFragment implements It
                 });
         systemDb = DatabaseSystem.getInstance();
         systemDb.realmInitialize();
-        List<Money>data = systemDb.readListNoteMoneyData();
+        List<Money>data = systemDb.readListData();
         location = new ArrayList<>();
         for (Money money:data) {
             if(!location.contains(money.getLocation())){

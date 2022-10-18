@@ -6,10 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".StatusFragment"
     android:background="#2B2929">
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_layout"
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcl_note"
             android:layout_width="match_parent"
@@ -19,5 +21,5 @@
             android:layout_marginRight="15dp"
             android:layout_marginBottom="30dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

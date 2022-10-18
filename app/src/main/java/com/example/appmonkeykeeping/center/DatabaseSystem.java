@@ -23,7 +23,7 @@ public class DatabaseSystem {
     public void realmInitialize() {
         realm = Realm.getDefaultInstance();
     }
-    public Long getCategoryMaxId(){
+    public Long getMaxId(){
         long nextId ;
         Number currentId = realm.where(Money.class).max("id");
         if(currentId == null){
@@ -33,7 +33,7 @@ public class DatabaseSystem {
         }
         return nextId;
     }
-    public void insertMoney(Money money){
+    public void insert(Money money){
         Log.e(getClass().getName(),"Inserting");
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -42,7 +42,7 @@ public class DatabaseSystem {
             }
         });
     }
-    public void updateNoteMoney(Money money){
+    public void update(Money money){
         Log.e(getClass().getName(),"Updating");
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -51,11 +51,11 @@ public class DatabaseSystem {
             }
         });
     }
-    public Money findNoteMoneyWithId(long id){
+    public Money findItemWithId(long id){
         Money moneyInProcess = realm.where(Money.class).equalTo("id",id).findFirst();
         return moneyInProcess;
     }
-    public void deleteNoteMoney(long id){
+    public void delete(long id){
         Money moneyInProcess = realm.where(Money.class).equalTo("id",id).findFirst();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -64,7 +64,7 @@ public class DatabaseSystem {
             }
         });
     }
-    public ArrayList<Money> readListNoteMoneyData(){
+    public ArrayList<Money> readListData(){
         ArrayList<Money>moneyList = new ArrayList<>();
         List<Money>moneyModels = realm.where(Money.class).findAll();
         for (int i = 0; i < moneyModels.size(); i++) {
