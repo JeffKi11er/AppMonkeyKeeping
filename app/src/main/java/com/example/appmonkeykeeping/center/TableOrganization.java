@@ -56,7 +56,8 @@ public class TableOrganization {
         }
         long totalOutcome = 0;
         long totalIncome = 0;
-        for (Money money: dbSystem.readListNoteMoneyData()) {
+        ArrayList<Money>monies = dbSystem.readListNoteMoneyData();
+        for (Money money: monies) {
             switch (money.getTag()){
                 case "income":
                     totalIncome += money.getActualCost();

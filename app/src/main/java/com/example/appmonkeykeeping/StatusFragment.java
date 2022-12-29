@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -111,10 +112,13 @@ public class StatusFragment extends Fragment implements GotInfoEditProgress {
                     deletedItem.setDetail(moneyInProcess.getDetail());
                     deletedItem.setLocation(moneyInProcess.getLocation());
                     deletedItem.setUsePeriod(moneyInProcess.isUsePeriod());
+                    deletedItem.setTag(moneyInProcess.getTag());
                     tableOrganization.removeMoneyNote(idChanged);
+                    Log.e("delete",deletedItem.toString());
                     Snackbar.make(binding.rclNote,deletedItem.getDate(),Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            Log.e("add delete",deletedItem.toString());
                            tableOrganization.addMoneyNote(deletedItem);
                            dataChanged();
                         }
