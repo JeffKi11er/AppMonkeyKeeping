@@ -16,6 +16,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 
 public class ChartAnalyze {
+    private ArrayList<BarEntry>barEntries;
     private ArrayList<PieEntry>pieEntries;
     private static ChartAnalyze chartAnalyze;
     public static ChartAnalyze getInstance(){
@@ -24,8 +25,7 @@ public class ChartAnalyze {
         }
         return chartAnalyze;
     }
-    public BarDataSet setBarData(ArrayList<DataBarChart>monies, String description, int[]colors){
-        ArrayList<BarEntry>barEntries = new ArrayList<>();
+    public BarData setUpDataBar(ArrayList<DataBarChart>monies, String description, int[]colors){
         barEntries = new ArrayList<>();
         for (int i = 0; i < monies.size(); i++) {
             BarEntry barEntry = new BarEntry(monies.get(i).getAmount(),monies.get(i).getData() );
@@ -34,7 +34,7 @@ public class ChartAnalyze {
         BarDataSet barDataSet = new BarDataSet(barEntries,description);
         barDataSet.setColors(colors);
         barDataSet.setDrawValues(false);
-        return barDataSet;
+        return new BarData(barDataSet);
     }
     public void setAnimateBar(BarChart barChart,String description){
         barChart.animateY(1000);

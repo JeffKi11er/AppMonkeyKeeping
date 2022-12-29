@@ -17,11 +17,8 @@ import com.example.appmonkeykeeping.center.TableOrganization;
 import com.example.appmonkeykeeping.databinding.FragmentDashBoardBinding;
 import com.example.appmonkeykeeping.helper.ChartAnalyze;
 import com.example.appmonkeykeeping.helper.DataPieChart;
-import com.example.appmonkeykeeping.helper.DateHelper;
 import com.example.appmonkeykeeping.model.ChartItemCategorize;
 import com.example.appmonkeykeeping.model.Money;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -54,6 +51,7 @@ public class DashBoardFragment extends Fragment {
                 return true; 
             }
         });
+//        binding.tvLastUpdate.setText((tableOrganization.showList().size()>0)?tableOrganization.showList().get(0).getDate():"");
         ArrayList<DataPieChart>moneyInAndOut = new ArrayList<>();
         ArrayList<Integer>colorInAndOut = new ArrayList<>();
         analyzeData(tableCategories,view,moneyInAndOut,colorInAndOut);
@@ -68,24 +66,8 @@ public class DashBoardFragment extends Fragment {
         analyzeCategorizeChart(tableCategories,tableStackHolder,chartItemCategorizes,view);
          ItemChartAdapter adapter = new ItemChartAdapter(getContext(),chartItemCategorizes);
         binding.rclCategoryChart.setAdapter(adapter);
-        ArrayList<Integer> monthGrouping = DateHelper.monthGrouping();
-//        for (int i = 0; i < monthGrouping.size(); i++) {
-//            Log.e("Month",String.valueOf(monthGrouping.get(i)));
-//        }
-        setUpOverallBar();
         return view;
     }
-
-    private void setUpOverallBar() {
-        BarDataSet Necessities;
-        BarDataSet Finance;
-        BarDataSet Saved;
-        BarDataSet Education;
-        BarDataSet Play;
-        BarDataSet Give;
-        ArrayList<Long[]>moneyGrouping = DateHelper.groupNoteByMonth();
-    }
-
     private void analyzeData(Long[]data,View view,ArrayList<DataPieChart>dataPieCharts,ArrayList<Integer>colors){
         switch (data.length){
             case 7:
@@ -186,7 +168,7 @@ public class DashBoardFragment extends Fragment {
         int[] ret = new int[integers.size()];
         for (int i=0; i < ret.length; i++)
         {
-            ret[i] = integers.get(i);
+            ret[i] = integers.get(i).intValue();
         }
         return ret;
     }
