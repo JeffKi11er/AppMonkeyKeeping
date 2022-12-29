@@ -3,12 +3,16 @@ package com.example.appmonkeykeeping.center;
 
 import android.util.Log;
 
+import com.example.appmonkeykeeping.helper.DateHelper;
 import com.example.appmonkeykeeping.model.Money;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class TableOrganization {
     private static TableOrganization tableOrganization;
@@ -154,27 +158,75 @@ public class TableOrganization {
         long totalPlayMaintain = 0;
         long totalGiveMaintain = 0;
         long totalIncome = totalAmount()[0];
-        for (Money money : dbSystem.readListNoteMoneyData()) {
-            switch (money.getCategory()){
+        Calendar calendarNow = Calendar.getInstance();
+        calendarNow.setTime(new Date());
+        int currentMonth = calendarNow.get(Calendar.MONTH);
+        Log.e("current month",String.valueOf(currentMonth));
+        Calendar calendarDateCheck = Calendar.getInstance();
+        ArrayList<Money>data = tableOrganization.showList();
+        for (int i = 0; i< data.size(); i++) {
+            calendarDateCheck.setTime(Objects.requireNonNull(DateHelper.stringToDateByDataFormat(data.get(i).getDate())));
+            if(currentMonth==calendarDateCheck.get(Calendar.MONTH)){
+                switch (data.get(i).getCategory()) {
+                    case "Education":
+                        totalEducationMaintain += data.get(i).getActualCost();
+                        break;
+                    case "Save":
+                        totalSavedMaintain += data.get(i).getActualCost();
+                        break;
+                    case "Give":
+                        totalGiveMaintain += data.get(i).getActualCost();
+                        break;
+                    case "Finance":
+                        totalFinanceMaintain += data.get(i).getActualCost();
+                        break;
+                    case "Play":
+                        totalPlayMaintain += data.get(i).getActualCost();
+                        break;
+                    case "Income":
+                        break;
+                    default:
+                        totalNecessityMaintain += data.get(i).getActualCost();
+                        break;
+                }
+            }
+        }
+        return new Long[]{totalIncome,totalNecessityMaintain,
+                totalFinanceMaintain,
+                totalSavedMaintain,
+                totalEducationMaintain,
+                totalPlayMaintain,
+                totalGiveMaintain};
+    }
+    public Long[]categoriesIncomeAndOutcomeForGrouping(ArrayList<Money>data){
+        long totalNecessityMaintain = 0;
+        long totalFinanceMaintain = 0;
+        long totalSavedMaintain = 0;
+        long totalEducationMaintain = 0;
+        long totalPlayMaintain = 0;
+        long totalGiveMaintain = 0;
+        long totalIncome = totalAmount()[0];
+        for (int i = 0; i< data.size(); i++) {
+            switch (data.get(i).getCategory()) {
                 case "Education":
-                    totalEducationMaintain+=money.getActualCost();
+                    totalEducationMaintain += data.get(i).getActualCost();
                     break;
                 case "Save":
-                    totalSavedMaintain+=money.getActualCost();
+                    totalSavedMaintain += data.get(i).getActualCost();
                     break;
                 case "Give":
-                    totalGiveMaintain+=money.getActualCost();
+                    totalGiveMaintain += data.get(i).getActualCost();
                     break;
                 case "Finance":
-                    totalFinanceMaintain+=money.getActualCost();
+                    totalFinanceMaintain += data.get(i).getActualCost();
                     break;
                 case "Play":
-                    totalPlayMaintain+=money.getActualCost();
+                    totalPlayMaintain += data.get(i).getActualCost();
                     break;
                 case "Income":
                     break;
                 default:
-                    totalNecessityMaintain+=money.getActualCost();
+                    totalNecessityMaintain += data.get(i).getActualCost();
                     break;
             }
         }
