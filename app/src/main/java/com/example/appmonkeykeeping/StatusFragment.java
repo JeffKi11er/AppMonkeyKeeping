@@ -55,13 +55,13 @@ public class StatusFragment extends Fragment implements GotInfoEditProgress {
         return monies.size();
     }
     private void updateList(){
+        monkeyMoney = new ArrayList<>();
         ArrayList<Money>moneyShowList = tableOrganization.showList();
         for (int i = 0; i < showListLength(moneyShowList); i++) {
             monkeyMoney.add(moneyShowList.get(i));
         }
     }
     private void init() {
-        monkeyMoney = new ArrayList<>();
         updateList();
         noteAdapter = new NoteAdapter(getContext(),monkeyMoney);
         binding.rclNote.setAdapter(noteAdapter);
@@ -70,6 +70,7 @@ public class StatusFragment extends Fragment implements GotInfoEditProgress {
         binding.refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                dataChanged();
                 int sizeNow = monkeyMoney.size();
                 int sizeVirtual = tableOrganization.showList().size();
                 if(sizeNow==sizeVirtual){
@@ -111,7 +112,6 @@ public class StatusFragment extends Fragment implements GotInfoEditProgress {
                     deletedItem.setLocation(moneyInProcess.getLocation());
                     deletedItem.setUsePeriod(moneyInProcess.isUsePeriod());
                     tableOrganization.removeMoneyNote(idChanged);
-                    dataChanged();
                     Snackbar.make(binding.rclNote,deletedItem.getDate(),Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
